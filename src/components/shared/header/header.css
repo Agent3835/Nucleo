@@ -1,0 +1,45 @@
+.header-container {
+  background-color: #FFFFFF;
+  color: white;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ #user-name {
+  font-family: 'Segoe UI', sans-serif;
+  margin-right: 10px;
+  font-size: 20px;
+  color: #555555;
+}
+
+#user-role {
+  font-family: 'Segoe UI', sans-serif;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #757575;
+}
+
+.app-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: left;
+}
+
+#logout-btn {
+  background-color: #FFFFFF;
+  color: #757575;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login Núcleo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../assets/css/loginStyles.css" />
+</head>
+<body>
+  <div class="login-container">
+    <img src="../assets/img/Logo gota_fullBlack.png" alt="núcleo" class="logo" />
+    <h2>Bienvenido nuevamente</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" name="nombre" id="nombre" required />
+        <label for="nombre">Nombre de usuario</label>
+      </div>
+      <div class="form-group">
+        <input type="password" name="password" id="password" required />
+        <label for="password">Contraseña</label>
+         <div id="error"></div>
+      </div>
+      <div class="separator"></div>
+      <button type="submit">Continuar</button>
+    </form>
+    <div class="separator"></div>
+    <footer>
+      <a href="#">Términos de uso</a> | <a href="#">Políticas de privacidad</a>
+    </footer>
+  </div>
+
+  <script src="../auth/login.js" defer></script>
+</body>
+</html>
