@@ -1,21 +1,21 @@
-export async function loadComponent(options) {
-  const urlParts = options.url.split('/');
-  const fileName = urlParts[urlParts.length - 1];
+// src/js/providers/components.js
 
-  // 1) Calcula la carpeta base de dashboard.html (/src/components/)
-  const baseDir = window.location.pathname.replace(/\/[^\/]*$/, '/');
+export async function loadComponent({ parent, url }) {
+  // url ejemplo: 'shared/header/header'
+  const parts    = url.split('/');
+  const name     = parts[parts.length - 1];
+  const baseDir  = window.location.pathname.replace(/\/[^\/]*$/, '/');
 
-  // 2) Construye ruta completa a HTML y JS
-  const htmlUrl = `${baseDir}${options.url}/${fileName}.html?a=${Date.now()}`;
-  const jsUrl   = `${baseDir}${options.url}/${fileName}.js`;
+  const htmlUrl  = `${baseDir}${url}/${name}.html?a=${Date.now()}`;
+  const jsUrl    = `${baseDir}${url}/${name}.js`;
 
-  console.log('Loading component:', htmlUrl);
-  const resp = await fetch(htmlUrl, { cache: "no-store" });
-  if (!resp.ok) throw new Error(`Failed to load ${htmlUrl}`);
-  const html = await resp.text();
-  document.getElementById(options.parent).innerHTML = html;
+  // 1) Fetch del HTML
+  const res = await fetch(htmlUrl, { cache: "no-store" });
+  if (!res.ok) throw new Error(`Error al cargar ${htmlUrl}`);
+  const html = await res.text();
+  document.getElementById(parent).innerHTML = html;
 
-  console.log('Importing module:', jsUrl);
+  // 2) Import dinámico del JS y llamada a init()
   const module = await import(jsUrl);
-  module.init();
+  if (module.init) module.init();
 }

@@ -1,5 +1,5 @@
 export function init() {
-  console.log("✅ Header cargado");
+  console.log("header leaded...");
 
   const rol = localStorage.getItem('idRol') || 'Invitado';
   const nombre = localStorage.getItem('nombre') || 'Invitado';

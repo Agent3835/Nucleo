@@ -1,7 +1,13 @@
 <link rel="stylesheet" href="shared/sidemenu/sidemenu.css" />
 
-<nav class="sidemenu">
-  <ul class="menu-list" id="menu-list">
-    <!-- Las opciones se inyectan desde sidemenu.js -->
-  </ul>
+<nav id="sidemenu" class="sidemenu">
+  <div class="sidemenu-header">
+    <img src="../assets/img/Logo_gota_fullBlack.png" alt="Logo" class="logo" />
+    <button id="sidemenu-toggle" class="toggle-btn" aria-label="Colapsar menú">
+      <i class="fa-solid fa-arrow-left"></i>
+    </button>
+  </div>
+  <div class="sidemenu-content">
+    <ul class="menu-list" id="menu-list"></ul>
+  </div>
 </nav>

@@ -1,41 +1,39 @@
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('loginForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const nombre = document.getElementById('nombre').value.trim();
-    const contraseña = document.getElementById('password').value;
-    const errorDiv = document.getElementById('error');
+document.getElementById('loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
 
-    try {
-      const res = await fetch('http://localhost:5103/api/Usuarios/login', {
-        method: 'POST',
-        mode: 'cors',               
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ Nombre: nombre, Contraseña: contraseña })
-      });
+  const nombre      = document.getElementById('nombre').value.trim();
+  const contraseña  = document.getElementById('password').value;
+  const errorDiv    = document.getElementById('error');
 
+  // Usa tu IP local si vas a probar desde otro dispositivo:
+  const API_HOST = 'http://192.168.1.14:5103'; 
+  // O bien si sólo pruebas en tu máquina:
+  // const API_HOST = 'http://localhost:5103';
 
-      if (res.status === 401) {
-        errorDiv.textContent = 'Credenciales inválidas';
-        errorDiv.style.display = 'block';
-        return;
-      }
+  const LOGIN_EP = '/api/Usuarios/login';   
 
-      if (!res.ok) throw new Error(res.statusText);
+  try {
+    const res = await fetch(`${API_HOST}${LOGIN_EP}`, {
+      method: 'POST',
+      mode:   'cors',             
+      headers:{ 'Content-Type':'application/json' },
+      body:    JSON.stringify({ Nombre: nombre, Contraseña: contraseña })
+    });
 
-      const { id, idRol } = await res.json();
+    if (!res.ok) 
+      throw new Error(`Status ${res.status}`);
 
-      // Guarda datos en localStorage
-      localStorage.setItem('nombre', nombre);
-      localStorage.setItem('id', id);
-      localStorage.setItem('idRol', idRol);
+    const { id, idRol } = await res.json();
+    localStorage.setItem('nombre', nombre);
+    localStorage.setItem('id', id);
+    localStorage.setItem('idRol', idRol);
+    window.location.href = '../components/dashboard.html';
 
-      // Redirige al dashboard único
-      window.location.href = '../components/dashboard.html';
-
-    } catch (err) {
-      console.error(err);
-      errorDiv.textContent = 'No se pudo conectar al servidor';
-      errorDiv.style.display = 'block';
-    }
-  });
+  } catch (err) {
+    console.error(err);
+    errorDiv.textContent = err.message.includes('404')
+      ? 'Ruta no encontrada en el servidor'
+      : 'No se pudo conectar al servidor';
+    errorDiv.style.display = 'block';
+  }
 });

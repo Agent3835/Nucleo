@@ -128,13 +128,18 @@ nav a:hover {
 }
 
 @media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-        padding: 0 1rem;
+    .top-container {
+        margin-top: 180px;
     }
-
+    .hero h1 {
+        font-size: 1.5rem;
+        padding: 0 .5rem;
+    }
+    
     .top-container p {
-        /* font-size: 1.1rem; */
+        margin: 20px 0;
+        font-size: 1rem;
+        display:block;
         max-width: 90%;
         padding: 0 1rem;
     }
@@ -279,6 +284,22 @@ nav a:hover {
     .black-card {
         width: 90%;
         margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .black-card-text-container{
+        padding: 0;
+    }
+
+    .black-cards-container-main h2 {
+        font-size: 1.5rem;
+    }
+
+    .black-card-text-container p {
+        font-size: 1rem;
+        line-height: 20px
+
     }
 }
 
@@ -493,7 +514,6 @@ nav a:hover {
     }
 }
 
-
 /* Sección “why” */
 
 .why-section {
@@ -705,3 +725,4 @@ footer {
         max-width: 100%;
     }
 }
+
