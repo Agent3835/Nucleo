@@ -1,0 +1,11 @@
+/* src/components/shared/graphics/graphics.css */
+
+.graphics-container {
+  padding: 20px;
+  text-align: center;
+}
+
+#device-chart {
+  max-width: 600px;
+  margin: 0 auto;
+}

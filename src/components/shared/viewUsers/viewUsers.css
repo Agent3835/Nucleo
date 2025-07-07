@@ -1,0 +1,51 @@
+/* Contenedor */
+.users-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Lista sin viñetas, centrada y con ancho máximo */
+.users-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Cada línea de usuario */
+.user-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Información del usuario */
+.user-info h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+.user-info p {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Botón eliminar */
+.delete-button {
+  background: #e74c3c;
+  border: none;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background .2s;
+}
+.delete-button:hover {
+  background: #c0392b;
+}

@@ -12,18 +12,17 @@ export const menu = {
     {
       title: 'Usuarios', icon: 'circle-user', submenu: [
         { title: 'Alta', icon: 'user-plus', component: 'admin/addUser/addUser' },
-        { title: 'Ver todos', icon: 'users', component: 'admin/viewUsers/viewUsers' },
+        { title: 'Ver todos', icon: 'users', component: 'shared/viewUsers' },
         { title: 'Baja', icon: 'user-slash', component: 'admin/deleteUser/deleteUser' }
       ]
-    }
-    ,
+    },
     { title: 'Límites', icon: 'chart-line', component: 'shared/device/graphs/graphs' },
     { title: 'Configuración', icon: 'sliders', component: 'shared/alerts/alerts' }
   ],
 
   SUP: [
     {
-      title: 'Dispositivos', icon: 'microchip', component: 'admin/addDevice'
+      title: 'Dispositivos', icon: 'microchip', component: 'shared/devices'
     },
     {
       title: 'Dashboard', icon: 'chart-simple', component: 'admin/dashboard/dashboard'
@@ -31,7 +30,7 @@ export const menu = {
     {
       title: 'Usuarios', icon: 'circle-user', submenu: [
         { title: 'Alta', icon: 'user-plus', component: 'admin/addUser/addUser' },
-        { title: 'Ver todos', icon: 'users', component: 'admin/viewUsers/viewUsers' }
+        { title: 'Ver todos', icon: 'users', component: 'shared/viewUsers' }
       ]
     },
     { title: 'Límites', icon: 'chart-line', component: 'shared/device/graphs/graphs' },
@@ -73,7 +72,7 @@ const componentsByRole = {
 };
 
 export const settings = {
-  apiUrl: 'http://localhost:5103/api/',
+   apiUrl: 'http://172.18.2.149:5103', // Change this to your API URL
   load: {
     components: componentsByRole[rol]
   }

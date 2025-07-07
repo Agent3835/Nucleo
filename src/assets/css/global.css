@@ -8,3 +8,13 @@
 body {
     background-color: #f0f0f0;
 }
+
+#content {
+  margin-left: 280px;    
+  transition: margin-left .3s ease;
+  padding: 20px;
+}
+
+body.sidemenu-collapsed #content {
+  margin-left: 120px;    
+}

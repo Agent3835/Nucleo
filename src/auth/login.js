@@ -6,8 +6,9 @@ document.getElementById('loginForm').addEventListener('submit', async e => {
   const errorDiv    = document.getElementById('error');
 
   // Usa tu IP local si vas a probar desde otro dispositivo:
-  const API_HOST = 'http://192.168.1.14:5103'; 
-  // O bien si sólo pruebas en tu máquina:
+  const API_HOST = 'http://172.18.2.149:5103'; 
+
+  // Si estás probando en el mismo dispositivo, puedes usar localhost:
   // const API_HOST = 'http://localhost:5103';
 
   const LOGIN_EP = '/api/Usuarios/login';   

@@ -1,34 +1,48 @@
-// components/admin/devices/devices.js
+// src/components/shared/devices/devices.js
+import { settings } from '../../../js/settings.js';
+import { loadComponent } from '../../../js/providers/components.js';
 
-// Ajusta la ruta relativa según dónde esté tu settings.js
-import { settings } from '../../../../js/settings.js';
 
-export function init() {
-  const container = document.getElementById('devices-list');
-  container.innerHTML = '<p>Cargando dispositivos…</p>';
+export async function init() {
+  const container = document.querySelector('.devices-container');
 
-  fetch(`${settings.apiUrl}dispositivos`)
-    .then(res => {
-      if (!res.ok) throw new Error(`Error ${res.status}`);
-      return res.json();
-    })
-    .then(dispositivos => {
-      if (dispositivos.length === 0) {
-        container.innerHTML = '<p>No hay dispositivos registrados.</p>';
-        return;
-      }
-      // Renderizamos una lista simple; puedes cambiar a tabla o tarjetas
-      const lista = document.createElement('ul');
-      dispositivos.forEach(d => {
-        const li = document.createElement('li');
-        li.textContent = `${d.nombre} (ID: ${d._id})`;
-        lista.appendChild(li);
-      });
-      container.innerHTML = '';
-      container.appendChild(lista);
-    })
-    .catch(err => {
-      container.innerHTML = `<p class="error">No se pudieron cargar: ${err.message}</p>`;
-      console.error(err);
+  try {
+    // devices.js
+    const res = await fetch(`${settings.apiUrl}/api/Dispositivos`);
+
+    if (!res.ok) throw new Error(`Error ${res.status}`);
+    const devices = await res.json();
+
+    // Vaciar contenedor
+    container.innerHTML = '';
+
+    // Crear una tarjeta por dispositivo
+    devices.forEach(d => {
+      // 1) Calcula la descripción del estado
+      const estadoDesc = d.idEdoDispositivo === 'Enc'
+        ? 'Encendido'
+        : 'Apagado';
+      const card = document.createElement('div');
+      card.className = 'device-card';
+      card.innerHTML = `
+        <h2><strong>Área:</strong> ${d.idArea}</h2>
+        <p><strong>Batería:</strong> ${d.nivelBateria}%</p>
+        <p><strong>Estado:</strong> ${estadoDesc}</p>
+      `;
+
+     card.addEventListener('click', () => {
+      localStorage.setItem('selectedDeviceId', d.id);
+       loadComponent({ parent: 'content', url: 'shared/graphics' });
+     });
+
+      container.appendChild(card);
     });
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `
+      <p style="color:red; text-align:center;">
+        No se pudieron cargar los dispositivos.
+      </p>
+    `;
+  }
 }
